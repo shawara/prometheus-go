@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: prometheus-go-app
+  name: prometheus-go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-go-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: prometheus-go-app
+    spec:
+      containers:
+        - name: prometheus-go-app
+          image: shawara/prometheus-go
+          ports:
+            - name: web
+              containerPort: 9000
