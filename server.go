@@ -70,6 +70,15 @@ func main() {
 	// Prometheus endpoint
 	router.Path("/metrics").Handler(promhttp.Handler())
 
+	// Serving / delay route
+	router.Path("/delay/{millis:[0-9]+}").Handler(http.HandlerFunc(
+		func(w http.ResponseWriter, r *http.Request) {
+			vars := mux.Vars(r)
+			millis, _ := strconv.Atoi(vars["millis"])
+			time.Sleep(time.Duration(millis) * time.Millisecond)
+			w.Write([]byte("Hello after delay"))
+		}))
+
 	// Serving / route
 	router.PathPrefix("/").Handler(http.HandlerFunc(
 		func(writer http.ResponseWriter, request *http.Request) {

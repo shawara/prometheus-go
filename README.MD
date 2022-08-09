@@ -5,6 +5,8 @@ A [Docker image](https://hub.docker.com/r/shawara/prometheus-go) is available at
 
 Prometheus Metrics Route =>  `/metrics`
 
+Delay Route to simulate real apis  =>  `/delay/{millis}`
+
 ### Using it inside kubernetes
 1. install Prometheus Operator 
     ```shell
